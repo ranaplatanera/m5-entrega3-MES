@@ -11,6 +11,3 @@ carRouter.use(":id", ensureCar.idExists);
 carRouter.get(":id", carController.retrieve);
 carRouter.patch(":id", carController.update);
 carRouter.delete(":id", carController.delete);
-
-//Faltando
-//Middlewares
