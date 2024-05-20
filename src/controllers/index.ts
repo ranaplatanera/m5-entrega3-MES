@@ -1,0 +1,1 @@
+export { carController } from "./car.controller";

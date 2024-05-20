@@ -1,0 +1,1 @@
+export { Car, CarCreate, CarUpdate } from "./car.interfaces";
