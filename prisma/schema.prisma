@@ -16,7 +16,7 @@ datasource db {
 model Car{
   id String @db.VarChar(36) @id @default(uuid())
   name String
-  description String?
+  description String
   brand String
   year Int
   km Int

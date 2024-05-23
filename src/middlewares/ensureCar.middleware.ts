@@ -5,12 +5,12 @@ export class EnsureCarMiddleware {
   public idExists = async (req: Request, res: Response, next: NextFunction) => {
     const foundCar = await prisma.car.findFirst({
       where: {
-        id: Number(req.params.id),
+        id: String(req.params.id),
       },
     });
 
     if (!foundCar) {
-      return res.status(404).json({ message: "Car not found" });
+      return res.status(404).json({ message: "Car not found." });
     }
 
     res.locals = { foundCar };

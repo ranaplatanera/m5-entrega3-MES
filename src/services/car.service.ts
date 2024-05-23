@@ -7,12 +7,12 @@ export class carService {
     private car = prisma.car;
 
     public list = async (): Promise<Array<Car>> => {
-        const cars = await this.car.list();
+        const cars = await this.car.findMany();
 
         return carSchema.array().parse(cars);
     };
 
-    public retrieve = async (carId: number): Promise<Car> => {
+    public retrieve = async (carId: string): Promise<Car> => {
         const car = await this.car.findUnique( {
             where: { id: carId },
           });
@@ -26,13 +26,13 @@ export class carService {
         return carSchema.parse(newCar);
     };
 
-    public update = async (carId: number, payload: CarUpdate): Promise<Car> => {
+    public update = async (carId: string, payload: CarUpdate): Promise<Car> => {
         const updatedCar = await prisma.car.update({ where: {id: carId}, data: payload });
 
         return carSchema.parse(updatedCar);
     };
 
-    public delete = async (carId: number): Promise<void> => {
+    public delete = async (carId: string): Promise<void> => {
         await prisma.car.delete({ where: { id: carId } });
     };
 

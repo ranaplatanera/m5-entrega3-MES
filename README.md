@@ -44,7 +44,7 @@ Padrão de resposta  (STATUS: 201)
 #### Possíveis erros:
 STATUS (400) quando o corpo não é compatível com o padrão
 
-### Leitura de tarefas GET /cars
+### Leitura de carros GET /cars
 
 Padrão de resposta  (STATUS: 200)
 

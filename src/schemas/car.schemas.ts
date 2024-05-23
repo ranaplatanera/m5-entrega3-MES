@@ -5,7 +5,7 @@ const carSchema = z.object({
     name: z.string().max(200),
     description: z.string().optional(),
     brand: z.string(),
-    year: z.number().positive().max(4),
+    year: z.number().positive(),
     km: z.number().positive()
   });
 

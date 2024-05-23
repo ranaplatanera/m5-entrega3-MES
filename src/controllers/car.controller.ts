@@ -10,7 +10,7 @@ export class CarController {
     };
 
     public retrieve = async (req: Request, res: Response): Promise<Response> => {
-        const carId = Number(req.params.id);
+        const carId = String(req.params.id);
         const car = await this.service.retrieve(carId);
         return res.status(200).json(car);
     };
@@ -21,13 +21,13 @@ export class CarController {
     };
     
     public update = async (req: Request, res: Response): Promise<Response> => {
-        const carId = Number(req.params.id);
+        const carId = String(req.params.id);
         const updatedCar = await this.service.update(carId, req.body);
         return res.status(200).json(updatedCar);
     };
 
     public delete = async (req: Request, res: Response): Promise<Response> => {
-        const car = await this.service.delete(Number(req.params.id));
+        const car = await this.service.delete(String(req.params.id));
         return res.status(204).json(car);
     };
 
