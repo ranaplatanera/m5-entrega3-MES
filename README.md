@@ -128,7 +128,7 @@ STATUS (404) - Carro não encontrado
 
 STATUS (409) quando o corpo não é compatível com o padrão
 
-### Excluir carro PATCH /tasks/:id
+### Excluir carro DELETE /cars/:id
 
 STATUS (204) - Está rota não tem um corpo de resposta
 

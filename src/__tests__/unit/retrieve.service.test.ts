@@ -34,7 +34,9 @@ describe("Car service retrieve unit tests", () => {
 
     test("Should throw an error when trying to retrieve a car with non existing id", async () => {
         const nonExistingId = "ssssssssssssssss";
+
+        const noRetrieve = service.retrieve(nonExistingId);
     
-        expect(service.retrieve(nonExistingId)).rejects.toThrow("Car not found.");
+        expect(noRetrieve).rejects.toThrow("Car not found.");
       });
 });

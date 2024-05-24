@@ -4,7 +4,6 @@ import { app } from "../../app";
 
 describe("Car delete integration tests", () => {
   const request = supertest(app);
-  const endpoint = "/cars";
 
   beforeEach(async () => {
     await prisma.car.deleteMany();
@@ -19,13 +18,15 @@ describe("Car delete integration tests", () => {
         km: 20000,
     };
 
-    const carToDelete = await request.post(endpoint).send(car);
+    const carToDelete = await prisma.car.create({data: car});
     
-    const endpoint2 = `/cars/${carToDelete.body.id}`;
+    const endpoint = `/cars/${carToDelete?.id}`;
+    
+    const response1 = await request.delete(endpoint);
 
-    const response = await request.delete(endpoint2);
+    const response2 = await prisma.car.findMany();
 
-    expect(response.status).toBe(204);
-    expect(response.body).toEqual([]);
+    expect(response1.status).toBe(204);
+    expect(response2).toEqual([]);
   });
 });

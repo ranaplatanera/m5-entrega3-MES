@@ -11,7 +11,8 @@ describe("Car list integration tests", () => {
   });
 
   test("Should be able to list all cars ", async () => {
-    const validPayload = [
+    await prisma.car.createMany ({data: 
+      [
         {
             name: "Logan",
             description: "Full",
@@ -33,9 +34,8 @@ describe("Car list integration tests", () => {
             year: 2022,
             km: 10000,
         },
-      ];
-
-    const cars = await request.post(endpoint).send(validPayload);
+      ]
+    });
     
     const response = await request.get(endpoint);
 

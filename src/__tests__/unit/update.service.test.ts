@@ -1,18 +1,20 @@
 import { prisma } from "../../database/prisma";
 import { carService } from "../../services";
 
-describe("Car service uptade unit tests", () => {
+describe("Car service update unit tests", () => {
     
     beforeAll(async () => {
         await prisma.car.deleteMany();
     });
-    beforeEach(async () => {
-        await prisma.car.deleteMany();
-    });
     
     const service = new carService();
+    
+    const toUpdatePayload = {
+        description: "Usado",
+        km: 100000,
+    };
 
-    test("Should be able to retrieve a car by id", async () => {
+    test("Should be able to update a car by id", async () => {
         const testCar = await service.create({
             name: "Logan",
             description: "Full",
@@ -20,11 +22,6 @@ describe("Car service uptade unit tests", () => {
             year: 2021,
             km: 20000,
         });
-
-        const toUpdatePayload = {
-            description: "Usado",
-            km: 100000,
-        };
 
         const receivedValue = await service.update(testCar.id, toUpdatePayload);
 
@@ -42,7 +39,9 @@ describe("Car service uptade unit tests", () => {
 
     test("Should throw an error when trying to update a car with non existing id", async () => {
         const nonExistingId = "ssssssssssssssss";
+
+        const noUpdate = service.update(nonExistingId, toUpdatePayload);
     
-        expect(service.update(nonExistingId, {})).rejects.toThrow("Car not found.");
-      });
+        expect(noUpdate).rejects.toThrow("Car not found.");
+    });
 });
